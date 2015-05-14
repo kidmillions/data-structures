@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<script type="text/javascript"  src='../lib/underscore/underscore.js'></script>
+<!-- <script type="text/javascript" src="./src/functional/queue.js"></script> -->
+<!-- <script type="text/javascript" src="./src/functional-shared/queue.js"></script> -->
+<!-- <script type="text/javascript" src="./src/prototypal/queue.js"></script> -->
+<script type="text/javascript" src="./src/pseudoclassical/queue.js"></script>
+
+<script type="text/javascript">
+  for (var i = 0; i < 5000000; i++) {
+    var instance = new Queue();
+    instance.enqueue(i);
+    instance.dequeue();
+  }
+</script>
+</body>
+</html>
+
