@@ -5,22 +5,15 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  //create object
-  var obj = {k: v};
+  var obj = {};
+  obj[k] = v;
 
-
-    //check to see if index is null
-    if (this.retrieve(i) === null) {
-
-    //if null
-      //insert/set object
+    if (this._storage.get(i) === undefined || this._storage.get(i) === null) {
       this._storage.set(i, obj);
+    } else {
+      var existing = this._storage.get(i);
+      _.extend(existing, obj);
     }
-
-    //if !null
-      //retrieve object that already exists at index
-      //iterate / extend new object into old one
-      //
 };
 
 HashTable.prototype.retrieve = function(k){
@@ -31,7 +24,9 @@ HashTable.prototype.retrieve = function(k){
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(i[k], null);
+  var emptyObj = {};
+  emptyObj[k] = null;
+  this._storage.set(i, emptyObj);
 };
 
 
