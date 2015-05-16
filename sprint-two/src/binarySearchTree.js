@@ -25,13 +25,17 @@ var BinarySearchTree = function(value){
     var containsTarget = false;
 
     var search = function(node) {
-      debugger;
       if (node.value === target) {
         containsTarget = true;
       } else if (node.value < target) {
-        return search(node.right);
+        if(node.right!==undefined)  {
+          return search(node.right);
+        }
+
       } else {
-        return search(node.left);
+        if (node.left !== undefined) {
+          return search(node.left);
+        }
       }
     }
 
@@ -39,9 +43,25 @@ var BinarySearchTree = function(value){
     return containsTarget;
 
   };
-  bTreeMethods.depthFirstLog = function(){
-
+  bTreeMethods.depthFirstLog = function(cb){
+      //define inner function
+      var search = function(node) {
+        cb(node.value);
+        if(node.right===undefined && node.left===undefined) {
+          return;
+        } else {
+          if(node.right!==undefined) {
+            return search(node.right);
+          }
+          if(node.left!==undefined) {
+            return search(node.left);
+          }
+        }
+      };
+      search(this);
   };
+
+
 
 
 
