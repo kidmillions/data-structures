@@ -52,4 +52,35 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should contain a value that was added to head', function() {
+    linkedList.addToHead(3);
+    linkedList.addToHead(2);
+    expect(linkedList.contains(3)).to.equal(true);
+    expect(linkedList.head.value).to.equal(2);
+  });
+
+
+  it('should designate the lists previous tail as the new tail when the tail is removed', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(linkedList.tail.previous.value).to.equal(4);
+    linkedList.removeTail();
+    expect(linkedList.tail.value).to.equal(4);
+  });
+
+  it('should return the value of the former tail when remove tail is called', function () {
+    linkedList.addToTail(2);
+    expect(linkedList.removeTail()).to.equal(2);
+  });
+
+  it('should contain a value that was added that is not a number', function() {
+    linkedList.addToTail({a: 'b'});
+    expect(linkedList.contains({a: 'b'})).to.equal(true);
+  })
+
+  //possible breakage
+  //passing in null
+  //
+
+
 });

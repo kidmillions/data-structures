@@ -41,4 +41,20 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should return null if there is no parent', function() {
+    tree.addChild(5);
+    debugger;
+    expect(tree.children[0].parent.value).to.equal(null);
+  });
+
+  it('should return the parent of a node', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(6);
+    debugger;
+    expect(tree.children[0][0].parent.value).to.equal(5);
+
+
+  });
+
+
 });
